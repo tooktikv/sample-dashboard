@@ -1,6 +1,10 @@
 
 
+import { Avatar, AvatarFallback } from "./components/ui/avatar"
+import { Badge } from "./components/ui/badge"
+import { Button } from "./components/ui/button"
 import { Card, CardDescription, CardHeader, CardTitle } from "./components/ui/card"
+import { Input } from "./components/ui/input"
 import { Separator } from "./components/ui/separator"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./components/ui/table"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs"
@@ -48,6 +52,10 @@ export function App() {
               <TabsTrigger value="inactive">Inactive</TabsTrigger>
             </TabsList>
           </Tabs>
+          <div className="flex gap-2">
+            <Input placeholder="Search by name" />
+            <Button variant="outline">Clear</Button>
+          </div>
         </div>
         <Table>
         <TableHeader>
@@ -61,10 +69,13 @@ export function App() {
         <TableBody>
           {students.map((student) => (
             <TableRow key={student.id}>
-              <TableCell> {student.name} </TableCell>
+              <TableCell>
+                <div className="flex items-center gap-2">
+                  <Avatar><AvatarFallback>TT</AvatarFallback></Avatar> {student.name}</div></TableCell>
               <TableCell> {student.email} </TableCell>
               <TableCell> {student.phone} </TableCell>
-              <TableCell className="capitalize"> {student.status} </TableCell>
+              <TableCell className="capitalize"> <Badge variant="outline"> {student.status} </Badge> </TableCell>
+            
             </TableRow>
           ))}
         </TableBody>
